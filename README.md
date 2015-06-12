@@ -16,7 +16,7 @@
 > git clone https://github.com/wonder-sy0618/proj.git   
 > 构建IDE环境   
 > 发布项目   
-> 浏览器访问 http://<domain>:<port>/proj/demo/index.do
+> 浏览器访问 http://<domain\>:<port\>/proj/demo/index.do
 
 
 * 常用构建命令
