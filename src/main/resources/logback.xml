@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	configuration为根元素，包含三个属性:
+	debug,指是否开启logback内部日志，没有设置此属性或设置其值为空、null或false时，表示不开启，否则，开启；
+	scan,设置是否定时扫描配置文件
+	scanPeriod,设置扫描周期，与scan属性配合使用，默认是60000毫秒，如果该属性值没有带单位，则单位为毫秒，可带的单位有milli/millisecond/second/seconde/minute/hour/day，可忽略大小写
+-->
+<configuration debug="true" scan="true" scanPeriod="600 seconds">
+	<contextName>proj</contextName>  
+
+	<!-- 
+		appender表示日志输出的方式，该元素必须包含name、classs属性;
+		name，表示appender的唯一标识
+		class一般常见有ch.qos.logback.core.FileAppender、ch.qos.logback.core.rolling.RollingFileAppender、ch.qos.logback.core.ConsoleAppender
+	-->
+	<!-- 下面appender表示输出到控制台 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 设置级别过滤器 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- level级别的日志才会被处理，其他级别不处理 -->
+			<level>DEBUG</level>
+			<!-- 用于配置符合条件的操作 -->
+			<onMatch>ACCEPT</onMatch>
+			<!-- 用于配置不符合条件的操作 -->
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<!-- encoder指定编码格式，并根据指定的pattern输出日志信息 -->
+		<encoder charset="UTF-8">
+			<!-- pattern指定日志的输出格式 -->
+			<pattern>[%level][%logger][%d{yyyy-MM-dd HH:mm:ss.SSS}] %msg %n</pattern>
+		</encoder>
+	</appender>
+	
+	<root level="DEBUG">
+		<appender-ref ref="stdout" />
+	</root>
+	
+	<logger name="net.sf" level="WARN" />  
+	<logger name="org.mybatis" level="WARN" /> 
+	<logger name="org.apache.ibatis" level="WARN" /> 
+	<logger name="org.apache.activemq" level="WARN" /> 
+	<logger name="org.springframework.security" level="WARN" />   
+	
+	
+	<logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />  
+	<logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />  
+	<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />  
+	<logger name="java.sql.Connection" level="DEBUG" />  
+	<logger name="java.sql.Statement" level="DEBUG" />  
+	<logger name="java.sql.PreparedStatement" level="DEBUG" /> 
+	
+	
+	<logger name="demo.proj" level="DEBUG" />   
+	
+	
+	
+	
+	
+</configuration>
+
+
+
+
+
+
+
+
+

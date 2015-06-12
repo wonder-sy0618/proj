@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.proj.orm.dao.TeacherMapper">
+	
+	
+	<!-- 
+		resultMap封装
+		参考官方文档：https://mybatis.github.io/mybatis-3/zh/sqlmap-xml.html
+	-->
+	<resultMap id="ExResultMap" type="demo.proj.orm.modelEx.TeacherEx" extends="BaseResultMap" >
+		<collection property="students" ofType="demo.proj.orm.model.Student" resultMap="demo.proj.orm.dao.StudentMapper.BaseResultMap" columnPrefix="stu_" />
+	</resultMap>
+  
+  
+	<select id="selectById" resultMap="ExResultMap" parameterType="java.lang.Integer" >
+		SELECT teacher.*,
+			student.id AS stu_id, 
+			student.NAME AS stu_NAME, 
+			student.age AS stu_age
+		FROM teacher
+		INNER JOIN teaching 
+		ON teaching.teacher_id = teacher.id
+		INNER JOIN student
+		ON teaching.student_id = student.id
+		WHERE teacher.id = ${id}
+	</select>
+  
+  
+</mapper>
