@@ -13,7 +13,10 @@
     > ORM映射
 
 * 检出项目
-> git clone https://github.com/wonder-sy0618/proj.git
+> git clone https://github.com/wonder-sy0618/proj.git   
+> 构建IDE环境   
+> 发布项目   
+> 浏览器访问 http://<domain>:<port>/proj/demo/index.do
 
 
 * 常用构建命令
@@ -63,3 +66,7 @@
         > gradle mbGenerator
         + 还原src/main/java/demo/proj/orm/dao/*
     - 复杂映射
+    	+ 在src/main/java/demo/proj/orm/modelEx 包下扩展实体（继承或关联）  
+    	+ 在src/main/resources/demo/proj/orm/xml/extend 包下扩展XML映射文件  
+    	+ 在src/main/java/demo/proj/orm/dao 的对应Mapper中添加接口方法
+    	+ **注意：根据Mybatis规则，Mapper接口必须与XML映射文件中的namespace一致**
